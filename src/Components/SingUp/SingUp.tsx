@@ -29,10 +29,12 @@ const SingUp = () => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
+            // confuse
             [name]: value
         }));
     };
 
+    // error checking
     const validateForm = () => {
         const newErrors: Errors = {};
 
