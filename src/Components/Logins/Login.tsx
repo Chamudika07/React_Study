@@ -112,8 +112,10 @@ function Login() {
                     <label htmlFor="isLec">Login as Lecturer</label>
                 </div>
 
-                <button className="login-btn" onClick={handleLogin}>Login</button>
-                <button className="signup-btn" onClick={handleSingup}>Sign Up</button>
+                <div className="button-group">
+                    <button className="login-btn" onClick={handleLogin}>Login</button>
+                    <button className="signup-btn" onClick={handleSingup}>Sign Up</button>
+                </div>
             </div>
         </div>
     )

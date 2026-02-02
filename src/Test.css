@@ -1,1 +1,85 @@
-/* This file is no longer in use - styles have been moved to appropriate component files */
+/* Test Component Styles - Modern Design */
+
+.test-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+}
+
+.test-card {
+  background: var(--background-secondary);
+  padding: 2.5rem;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-xl);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.test-card h1 {
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.test-card p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.test-btn {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-lg);
+}
+
+.test-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.test-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+  .test-container {
+    padding: 1rem;
+  }
+
+  .test-card {
+    padding: 1.5rem;
+  }
+
+  .test-btn {
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+  }
+}

@@ -72,105 +72,155 @@ const Home: React.FC = () => {
     };
 
     return (
-        <div className="max-w-3xl mx-auto p-4">
-            <h2 className="text-2xl font-bold mb-4">Create New Course</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="home-container">
+            <div className="home-header">
+                <h1>Course Management System</h1>
+                <p>Create and manage your courses and lessons</p>
+            </div>
+            <form onSubmit={handleSubmit} className="course-form-section">
+                <h2>Create New Course</h2>
                 {/* Course Fields */}
-                <input
-                    type="text"
-                    name="title"
-                    placeholder="Course Title"
-                    value={course.title}
-                    onChange={handleChange}
-                    className="w-full border p-2 rounded"
-                    required
-                />
-                <input
-                    type="text"
-                    name="description"
-                    placeholder="Course Description"
-                    value={course.description}
-                    onChange={handleChange}
-                    className="w-full border p-2 rounded"
-                    required
-                />
-                <input
-                    type="text"
-                    name="instructor"
-                    placeholder="Instructor Name"
-                    value={course.instructor}
-                    onChange={handleChange}
-                    className="w-full border p-2 rounded"
-                    required
-                />
-                <input
-                    type="text"
-                    name="duration"
-                    placeholder="Duration (e.g., 3h 30m)"
-                    value={course.duration}
-                    onChange={handleChange}
-                    className="w-full border p-2 rounded"
-                    required
-                />
+                <div className="form-row">
+                    <div className="form-field">
+                        <label htmlFor="title">Course Title</label>
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            placeholder="Course Title"
+                            value={course.title}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-field">
+                        <label htmlFor="instructor">Instructor Name</label>
+                        <input
+                            type="text"
+                            id="instructor"
+                            name="instructor"
+                            placeholder="Instructor Name"
+                            value={course.instructor}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                </div>
+
+                <div className="form-row full">
+                    <div className="form-field">
+                        <label htmlFor="description">Course Description</label>
+                        <textarea
+                            id="description"
+                            name="description"
+                            placeholder="Course Description"
+                            value={course.description}
+                            onChange={handleChange}
+                            required
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div className="form-row">
+                    <div className="form-field">
+                        <label htmlFor="duration">Duration (e.g., 3h 30m)</label>
+                        <input
+                            type="text"
+                            id="duration"
+                            name="duration"
+                            placeholder="Duration (e.g., 3h 30m)"
+                            value={course.duration}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                </div>
 
                 {/* Lessons */}
-                <div>
-                    <h3 className="font-semibold mb-2">Lessons</h3>
+                <div className="lessons-section">
+                    <h3>Lessons</h3>
                     {course.lessons.map((lesson, index) => (
-                        <div key={lesson.id} className="mb-3 p-2 border rounded space-y-2">
-                            <input
-                                type="text"
-                                name="title"
-                                placeholder={`Lesson ${index + 1} Title`}
-                                value={lesson.title}
-                                onChange={(e) => handleLessonChange(index, e)}
-                                className="w-full border p-2 rounded"
-                                required
-                            />
-                            <textarea
-                                name="content"
-                                placeholder={`Lesson ${index + 1} Content`}
-                                value={lesson.content}
-                                onChange={(e) => handleLessonChange(index, e)}
-                                className="w-full border p-2 rounded"
-                                required
-                            />
-                            <button
-                                type="button"
-                                onClick={() => removeLesson(index)}
-                                className="bg-red-500 text-white px-2 py-1 rounded"
-                            >
-                                Remove Lesson
-                            </button>
+                        <div key={lesson.id} className="lesson-item">
+                            <div className="form-row">
+                                <div className="form-field full">
+                                    <label>Lesson {index + 1} Title</label>
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        placeholder={`Lesson ${index + 1} Title`}
+                                        value={lesson.title}
+                                        onChange={(e) => handleLessonChange(index, e)}
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-row full">
+                                <div className="form-field">
+                                    <label>Lesson {index + 1} Content</label>
+                                    <textarea
+                                        name="content"
+                                        placeholder={`Lesson ${index + 1} Content`}
+                                        value={lesson.content}
+                                        onChange={(e) => handleLessonChange(index, e)}
+                                        required
+                                    ></textarea>
+                                </div>
+                            </div>
+                            {course.lessons.length > 1 && (
+                                <div className="lesson-buttons">
+                                    <button
+                                        type="button"
+                                        onClick={() => removeLesson(index)}
+                                        className="btn-remove"
+                                    >
+                                        Remove Lesson
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     ))}
                     <button
                         type="button"
                         onClick={addLesson}
-                        className="bg-green-500 text-white px-4 py-2 rounded"
+                        className="btn-add"
                     >
-                        Add Lesson
+                        + Add Lesson
                     </button>
                 </div>
 
                 {/* Submit */}
-                <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded mt-4">
+                <button type="submit" className="btn-primary">
                     Add Course
                 </button>
             </form>
 
             {/* Display Courses */}
-            <div className="mt-8">
-                <h3 className="text-xl font-bold mb-2">Courses List</h3>
-                {courses.map((c) => (
-                    <div key={c.id} className="p-2 border rounded mb-2">
-                        <h4 className="font-semibold">{c.title}</h4>
-                        <p>{c.description}</p>
-                        <p>Instructor: {c.instructor}</p>
-                        <p>Duration: {c.duration}</p>
-                        <p>Lessons: {c.lessons.length}</p>
+            <div className="courses-list-section">
+                <h2>Courses List ({courses.length})</h2>
+                {courses.length === 0 ? (
+                    <p className="text-center text-gray-500">No courses created yet. Create your first course above!</p>
+                ) : (
+                    <div className="courses-grid">
+                        {courses.map((c) => (
+                            <div key={c.id} className="course-card">
+                                <span className="badge">Course #{c.id}</span>
+                                <h4>{c.title}</h4>
+                                <p>{c.description}</p>
+                                <div className="course-meta">
+                                    <div>
+                                        <strong>Instructor:</strong> {c.instructor}
+                                    </div>
+                                    <div>
+                                        <strong>Duration:</strong> {c.duration}
+                                    </div>
+                                </div>
+                                <p style={{ marginTop: '1rem' }}>
+                                    <strong>Lessons: {c.lessons.length}</strong>
+                                </p>
+                            </div>
+                        ))}
                     </div>
-                ))}
+                )}
             </div>
         </div>
     );
