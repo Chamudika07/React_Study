@@ -101,7 +101,8 @@
 
 .checkbox-group label {
   cursor: pointer;
-  user-select: none;
+  -webkit-user-select: none; /* Safari, iOS */
+  user-select: none;         /* Modern browsers */
 }
 
 .button-group {
